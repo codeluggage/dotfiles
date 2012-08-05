@@ -1,4 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/Users/matias_lange_nielsen/Downloads/ViInputManager-v0.3.2'
 let g:netrw_dirhist_2='/Users/matias_lange_nielsen/Library/KeyBindings'
+let g:netrw_dirhist_3='/Users/matias_lange_nielsen/.vim'
+let g:netrw_dirhist_4='/Users/matias_lange_nielsen/Documents/Kreative Spill'

@@ -9,6 +9,7 @@ else
     augroup filetypedetect
 
     au! BufRead,BufNewFile *.m       setfiletype objc
+    au BufNewFile,BufRead *.gradle setf groovy
 
     augroup END
 endif
