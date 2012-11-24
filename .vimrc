@@ -45,11 +45,19 @@ set tabstop=4
 set shiftwidth=4
 set hidden
 
+" Save on loosing focus
+set autowriteall
+
 
 " Language support:
 " ======
 let g:pydoc_cmd = "/usr/bin/pydoc"
 let g:pydiction_location = '~/complete-dict'
+" Omni-Completion tip window to close when a selection is made. 
+" These lines close it on movement in insert mode or when leaving insert mode.
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 au BufRead,BufNewFile *.json set filetype=json
 au! Syntax json source /Users/matias_lange_nielsen/.vim/syntax/json.vim
 
@@ -66,8 +74,8 @@ au FocusLost * :wa
 
 if has('autocmd')
 	autocmd filetype python set expandtab
+	autocmd BufWinEnter,BufNewFile * silent tabo
 endif
-
 
 
 " TODO: How to show that this is a fold?
@@ -105,7 +113,6 @@ noremap <C-CR> o<Esc>
 noremap <S-CR> O<Esc>                               
 noremap <Leader><Leader> <C-^>
 
-" Shorter commands to toggle Taglist display        
 " Add line below/above without going to insert mode:
 nnoremap TT :TlistToggle<CR>
 noremap <C-CR> o<Esc>
@@ -115,15 +122,10 @@ noremap <S-CR> O<Esc>
 " Execute file being edited with <Shift> + e:
 " Shorter commands to toggle Taglist display
 map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
-nnoremap TT :TlistToggle<CR>
-map <F4> :TlistToggle<CR>
-
-" Execute file being edited with <Shift> + e:
-map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
 
 set pastetoggle=<leader>pt
 
-" Reload this file (~/.vimrcv
+" Reload vimrc
 nnoremap <leader>sv :so $MYVIMRC<cr>
 
 " Map half page up/down
@@ -145,13 +147,9 @@ endfunction
 " Locally (local to block) rename a variable
 nmap <Leader>rf "zyiw:call Refactor()<cr>mx:silent! norm gd<cr>[%V]%:s/<C-R>//<c-r>z/g<cr>`x
 
+" Error movement forwards/backwards
 nmap <Leader>n :cn<cr>
 nmap <S><Leader>n :cp<cr>
 
 nnoremap <S-x> diw
 nmap <BS> i<BS><ESC>l 
-
-
-
-
-
